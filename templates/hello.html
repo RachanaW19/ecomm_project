@@ -1,0 +1,62 @@
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Templates</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+    <h1>Templates as a Response</h1>
+    {{greet}}<br>       <!-- 'key' is written in double curly bracket to access its 'value'-->
+    <!--<p>{{x}}</p>-->    <!--This is html comment-->
+    {% comment %}          <!--this is DTL comment starts@line no. 11, ends@L.no. 18-->
+    <p>{{y}}</p>
+    {% if x > y %}
+        <p>{{x}} is greater</p>
+    {% else %}
+        <p>{{y}} is greater</p>
+    {% endif %}
+    
+    <p>List:{{l}}</p>
+    {% for i in l %}
+        <p>{{i}}</p>
+    
+    {% endfor %}
+    
+
+    {% for i in product %}
+        <!--<strong>SR.No: </strong>{{forloop.counter}}<br>-->
+        <strong>SR.No: </strong>{{forloop.revcounter}}<br>
+        <strong>Name:</strong>{{i.name}}<br>
+        <strong>Category:</strong>{{i.cat}}<br>
+        <strong>Price:</strong>{{i.price}}
+        <hr>
+    {% endfor %}
+    
+
+    <table border="1px">    
+        <tr>
+            <th>SR.No: </th>
+            <th>Name:</th>
+            <th>Category:</th>
+            <th>Price:</th>
+        </tr>    
+        
+        {% for i in product %}
+            <tr>
+                <td>{{forloop.counter}}</td>       
+                <td>{{i.name}}</td>
+                <td>{{i.cat}}</td>
+                <td>{{i.price}}</td>
+            </tr>      
+        {% endfor %}
+        {% endcomment %}
+
+        <button onclick="greet()">Click me</button>
+        <img src="{% static 'images/sample_img.jpg' %}" alt="butterfly" width="300px" height="230px" />
+    </table>
+
+</body>
+</html>
